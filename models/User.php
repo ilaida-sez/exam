@@ -48,7 +48,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username'], 'unique'],
             [['email'], 'unique'],
             ['role', 'default', 'value'=>'user'],
-            ['role', 'in', 'range', ['user', 'admin']],
+            ['role', 'in', 'range'=> ['user', 'admin']],
         ];
     }
 
@@ -145,7 +145,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return Yii::$app->security->validatePassword($password, $this->password);
     }
     public static function findIdentity($id) {
-        return static::findOne($id;
+        return static::findOne($id);
     }
     public static function findIdentityByAccessToken($roken, $type=null) {
         return null;

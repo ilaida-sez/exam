@@ -3,15 +3,15 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap5\ActiveForm $form */
 
-/** @var app\models\LoginForm $model */
+/** @var app\models\User $model */
 
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
-$this->title = 'Login';
+$this->title = 'signup';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+<div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to login:</p>
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
 
             <?php $form = ActiveForm::begin([
-                'id' => 'login-form',
+                'id' => 'signup-form',
                 'fieldConfig' => [
                     'template' => "{label}\n{input}\n{error}",
                     'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
@@ -31,25 +31,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
-
-            <?= $form->field($model, 'rememberMe')->checkbox([
-                'template' => "<div class=\"custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            ]) ?>
+            <?= $form->field($model, 'password')->passwordInput(['autocomplete' => 'new-password']) ?>
+            <?= $form->field($model, 'fio')?>
+            <?= $form->field($model, 'phone')?>
+            <?= $form->field($model, 'email')?>
 
             <div class="form-group">
                 <div>
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton('signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
             </div>
 
             <?php ActiveForm::end(); ?>
 
-            <p>Ещё не зарегистрированны? <?= Html::a('Signup', ['site/signup']) ?></p>
+            <p>Уже зарегистрированны? <?= Html::a('Signup', ['site/login']) ?></p>
 
             <div style="color:#999;">
-                You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-                To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+                <strong>логин:</strong> не менее 6 символов, латинские буквы и цифры<br>
+                <strong>телефон:</strong> 8(982)473-95-88<br>
+                <strong>Логин:</strong> не менее 6 символов, латинские буквы и цифры
             </div>
 
         </div>

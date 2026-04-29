@@ -144,7 +144,7 @@ class SiteController extends Controller
     }
     public function actionSignup() {
         $model = new \app\models\User();
-        if($model->load(Yii::$app->request->post()) && $this->save()) {
+        if($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'succes');
             return $this->redirect(['login']);
         }
