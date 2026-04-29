@@ -125,4 +125,29 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
+
+    public function actionAdmin() {
+        if(!Yii::$app->user->identity->isAdmin()) return $this->goHome();
+        $applications = \app\models\Application::find()->with('user')->all();
+        return $this->render('admin', ['applications'=>$applications]);
+    }
+    public function actionChangeStatus($id, $status) {
+        if(!Yii::$app->user->identity->isAdmin()) return $this->goHome();
+        $model = \app\models\Application::findOne($id);
+        if($model && in_array($status, ['new', 'studying', 'completed'])) {
+            $model->status = $status;
+            $model->save();
+        }
+        return $this->redirect(['admin']);
+    }
+    public function actionSignup() {
+        $model = new \app\models\User();
+        if($model->load(Yii::$app->request->post()) && $this->save()) {
+            Yii::$app->session->setFlash('success', 'succes');
+            return $this->redirect(['login']);
+        }
+        return $this->render('signup', ['model'=>$model]);
+    }
 }
