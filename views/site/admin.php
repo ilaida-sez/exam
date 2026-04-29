@@ -11,9 +11,9 @@
             <td><?= $app->status ?></td>
 
             <td>
-                <a href="site/change-status?id=<?= $app->id ?>&status=new">new</a>
-                <a href="site/change-status?id=<?= $app->id ?>&status=studying">studying</a>
-                <a href="site/change-status?id=<?= $app->id ?>&status=completed">completed</a>
+                <a href="index.php?r=site/change-status&id=<?= $app->id ?>&status=new">Новая</a>
+                <a href="index.php?r=site/change-status&id=<?= $app->id ?>&status=studying">обучение</a>
+                <a href="index.php?r=site/change-status&id=<?= $app->id ?>&status=completed">завершено</a>
             </td>
         </tr>
     <?php endforeach; ?>
